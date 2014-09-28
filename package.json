@@ -1,0 +1,23 @@
+{
+  "name": "rtc.io-faq",
+  "version": "1.0.0",
+  "description": "Code samples written in response to questions asked in 140 characters or less ",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rtc-io/faq.git"
+  },
+  "author": "Damon Oehlman <damon.oehlman@nicta.com.au>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rtc-io/faq/issues"
+  },
+  "homepage": "https://github.com/rtc-io/faq",
+  "devDependencies": {
+    "browserify": "^5.12.1"
+  }
+}
