@@ -36,5 +36,9 @@
     "nopt": "^3.0.1",
     "rtc-media": "^1.10.0",
     "rtc-quickconnect": "^3.0.0"
+  },
+  "devDependencies": {
+    "concat-stream": "^1.4.6",
+    "cuid": "^1.2.4"
   }
 }
