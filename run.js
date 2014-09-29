@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var path = require('path');
 var beefy = require('beefy');
 var launcher = require('browser-launcher');

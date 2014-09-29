@@ -1,9 +1,11 @@
 {
-  "name": "rtc.io-faq",
+  "name": "rtc-faq",
   "version": "1.0.0",
   "description": "Code samples written in response to questions asked in 140 characters or less ",
   "main": "index.js",
-  "private": true,
+  "bin": {
+    "rtc-faq": "./run.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +19,7 @@
     "url": "https://github.com/rtc-io/faq/issues"
   },
   "homepage": "https://github.com/rtc-io/faq",
-  "devDependencies": {
+  "dependencies": {
     "attachmediastream": "^1.0.1",
     "beefy": "^2.1.1",
     "browser-launcher": "^1.0.0",
