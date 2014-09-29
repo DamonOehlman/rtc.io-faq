@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+var faq = require('../');
+var sample = process.argv[2];
+
+if (! sample) {
+  return faq.displaySamples();
+}
+
+faq.run({ sample: sample });
