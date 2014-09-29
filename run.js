@@ -6,7 +6,9 @@ var kgo = require('kgo');
 var port = process.env.PORT || 9966;
 var uri = 'http://localhost:' + port + '/';
 var configPath = path.resolve(__dirname, 'config');
-
+var baseOpts = [
+  '--use-fake-ui-for-media-stream'
+];
 var handler = beefy({
   entries: [ example ],
   cwd: path.dirname(example)
@@ -26,14 +28,12 @@ kgo
   launcher({ config: path.join(configPath, 'b', 'config.json') }, done);
 })
 ('launch-a', ['config-a'], function(launch, done) {
-  launch(uri, { browser: 'chrome' }, done);
+  launch(uri, { browser: 'chrome', options: baseOpts }, done);
 })
 ('launch-b', ['config-b'], function(launch, done) {
-  launch(uri, { browser: 'chrome', options: [ '--use-fake-device-for-media-stream' ] }, done);
+  launch(uri, { browser: 'chrome', options: baseOpts.concat([ '--use-fake-device-for-media-stream' ]) }, done);
 })
 ('run', ['launch-a', 'launch-b'], function(a, b, done) {
-  console.log(a, b);
-
   a.on('exit', process.exit.bind(process));
   b.on('exit', process.exit.bind(process));
 })
