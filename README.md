@@ -22,13 +22,6 @@ Run one of the examples:
 rtc-faq replace-captured-media
 ```
 
-Using the `rtc-faq` command runs two chrome instances, the second of which is
-launched with the `--use-fake-device-for-media-stream` option which displays
-a test pattern rather than a webcam image.  Each of the browser instances is
-also launched with the `--use-fake-ui-for-media-stream` option which
-suppresses the media permission dialog so you can experience how the code will
-behave in a `HTTPS` environment.
-
 Look at the code which makes it go:
 
 ```
@@ -40,6 +33,25 @@ launched by the `rtc-faq` and see the changes immediately, thanks to
 [beefy](https://github.com/chrisdickinson/beefy) and
 [browserify](https://github.com/substack/node-browserify) which are used by the
 FAQ loader.
+
+## How it Works
+
+Using the `rtc-faq` command runs two chrome instances, the second of which is
+launched with the `--use-fake-device-for-media-stream` option which displays
+a test pattern rather than a webcam image.  Each of the browser instances is
+also launched with the `--use-fake-ui-for-media-stream` option which
+suppresses the media permission dialog so you can experience how the code will
+behave in a `HTTPS` environment.
+
+### qsa(selector, scope?)
+
+This function is used to get the results of the querySelectorAll output
+in the fastest possible way.  This code is very much based on the
+implementation in
+[zepto](https://github.com/madrobby/zepto/blob/master/src/zepto.js#L104),
+but perhaps not quite as terse.
+
+ERROR: could not find: 
 
 ## License(s)
 
