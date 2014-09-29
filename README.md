@@ -22,6 +22,25 @@ Run one of the examples:
 rtc-faq replace-captured-media
 ```
 
+Using the `rtc-faq` command runs two chrome instances, the second of which is
+launched with the `--use-fake-device-for-media-stream` option which displays
+a test pattern rather than a webcam image.  Each of the browser instances is
+also launched with the `--use-fake-ui-for-media-stream` option which
+suppresses the media permission dialog so you can experience how the code will
+behave in a `HTTPS` environment.
+
+Look at the code which makes it go:
+
+```
+cat examples/replace-captured-media.js
+```
+
+You'll be able to edit the code and refresh the browser windows that have been
+launched by the `rtc-faq` and see the changes immediately, thanks to
+[beefy](https://github.com/chrisdickinson/beefy) and
+[browserify](https://github.com/substack/node-browserify) which are used by the
+FAQ loader.
+
 ## License(s)
 
 ### MIT
