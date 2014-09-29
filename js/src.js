@@ -3,6 +3,7 @@ var http = require('http');
 var concat = require('concat-stream');
 var h = require('hyperscript');
 var cuid = require('cuid');
+var reTrailingSlash = /\/.*$/;
 
 function displaySample(target, sample, code) {
   var el = h('pre', h('code', { className: 'javascript' }, code));
@@ -34,7 +35,7 @@ function loadSample(evt) {
     return document.querySelector(evt.target.dataset.code).classList.toggle('active');
   }
 
-  req = http.get(location.origin + '/examples/' + sample + '.js');
+  req = http.get(location.origin + location.pathname.replace(reTrailingSlash, '') + '/examples/' + sample + '.js');
   req.on('response', function(res) {
     res.pipe(concat(function(data) {
       evt.target.dataset.code = displaySample(evt.target, sample, data);
