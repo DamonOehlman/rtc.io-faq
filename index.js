@@ -7,6 +7,28 @@ var port = process.env.PORT || 9966;
 var uri = 'http://localhost:' + port + '/';
 var configPath = path.resolve(__dirname, 'config');
 
+/**
+  # rtc.io FAQ
+
+  Ask a question in 140 characters or less, and we'll do our best to answer it with
+  a runnable code sample.
+
+  ## Usage
+
+  Install:
+
+  ```
+  npm i -g rtc-faq
+  ```
+
+  Run one of the examples:
+
+  ```
+  rtc-faq replace-captured-media
+  ```
+
+**/
+
 exports.run = function(opts) {
   var baseOpts = [
     '--use-fake-ui-for-media-stream'
