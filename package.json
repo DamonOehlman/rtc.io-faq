@@ -38,7 +38,7 @@
     "rtc-media": "^1.10.0",
     "rtc-quickconnect": "^3.0.0",
     "rtc-screenshare": "^1.0.0",
-    "rtc-ui": "^1.0.1"
+    "rtc-ui": "^1.1.0"
   },
   "devDependencies": {
     "concat-stream": "^1.4.6",
