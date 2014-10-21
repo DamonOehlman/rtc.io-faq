@@ -35,6 +35,24 @@
             <p>Both the solutions above require features of WebRTC or media streams that are currently only implemented in Chrome.</p>
         </div>
         <hr>
+        <blockquote>
+        When using rtc-quickconnect in reactive mode, I am seeing a blank video element created before I have captured any media.  How can I fix this?
+        </blockquote>
+        <div class="answer">
+            <p>
+            What you are seeing here is a "default" stream that is added by Chrome when a peer connection is initiated with no "real" streams or data channels.
+            The best way you can prevent this displaying is through checking whether the stream you have received can actually play media.  For ease of use,
+            this functionality has been built into an experimental <code><a href="https://github.com/rtc-io/rtc-ui">rtc-ui</a></code> package which can be used to
+            handle rendering video elements.
+            </p>
+            <p>A demo using the <code>rtc-ui</code> package to handle switching between webcam capture is available below.</p>
+            <p><strong>NOTE:</strong> to try this demo
+            out, you will need to <a href="https://chrome.google.com/webstore/detail/webrtc-screen-sharing-for/einjngigaajacmojcohefgmnhhdnllic">install the rtc.io screen capture extension</a> and
+            browse to the page on HTTPS (screen capture is only permitted on HTTPS).
+            </p>
+            <a data-sample>dynamic-screenshare</a>
+        </div>
+        <hr>
     </div>
     <div class="pure-u-2-24"></div>
 </div>
