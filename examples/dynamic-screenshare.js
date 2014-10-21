@@ -3,11 +3,14 @@ var kgo = require('kgo');
 var quickconnect = require('rtc-quickconnect');
 var screenshare = require('rtc-screenshare');
 var getUserMedia = require('getusermedia');
+var streamui = require('rtc-ui/stream');
 
 // create a conference instance, and launch in reactive mode (chrome only)
 var conference = quickconnect('https://switchboard.rtc.io', {
   iceServers: require('freeice')(),
   room: 'rtc-faq:dynamic-screenshare',
+
+  // when streams are added or remove, renegotiate
   reactive: true
 });
 
@@ -22,14 +25,14 @@ var controls = h('div',
 
 
 function activateStream(stream) {
-  conference.addStream(activeStream = stream);
-}
-
-function captureScreen() {
   if (activeStream) {
     conference.removeStream(activeStream);
   }
 
+  conference.addStream(activeStream = stream);
+}
+
+function captureScreen() {
   kgo
   ('constraints', screenshare.window)
   ('capture', ['constraints'], getUserMedia)
@@ -38,10 +41,6 @@ function captureScreen() {
 }
 
 function captureCam() {
-  if (activeStream) {
-    conference.removeStream(activeStream);
-  }
-
   kgo({
     constraints: { video: true, audio: true }
   })
@@ -54,12 +53,5 @@ function reportError(err) {
   console.error('Captured error: ', err);
 }
 
-conference.on('stream:added', function(id, stream) {
-  console.log('peer ' + id + ' added stream: ', stream);
-});
-
-conference.on('stream:removed', function(id, stream) {
-  console.log('peer ' + id + ' removed stream: ', stream);
-});
-
+streamui(conference, { container: document.body });
 document.body.appendChild(controls);
