@@ -37,7 +37,7 @@
     "nopt": "^3.0.1",
     "rtc-media": "^2.0.1",
     "rtc-quickconnect": "^3.0.0",
-    "rtc-screenshare": "^3.1.1",
+    "rtc-screen": "^1.1.0",
     "rtc-ui": "^1.1.0"
   },
   "devDependencies": {
