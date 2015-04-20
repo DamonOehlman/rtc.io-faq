@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rtc-io/faq.git"
+    "url": "https://github.com/DamonOehlman/rtc.io-faq.git"
   },
-  "author": "Damon Oehlman <damon.oehlman@nicta.com.au>",
-  "license": "MIT",
+  "author": "Damon Oehlman <damon.oehlman@gmail>",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rtc-io/faq/issues"
+    "url": "https://github.com/DamonOehlman/rtc.io-faq/issues"
   },
-  "homepage": "https://github.com/rtc-io/faq",
+  "homepage": "https://github.com/DamonOehlman/rtc.io-faq",
   "dependencies": {
     "attachmediastream": "^1.0.1",
     "beefy": "^2.1.1",
