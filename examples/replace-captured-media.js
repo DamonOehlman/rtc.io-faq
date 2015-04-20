@@ -1,38 +1,44 @@
 var quickconnect = require('rtc-quickconnect');
-var media = require('rtc-media');
+var capture = require('rtc-capture');
+var attach = require('rtc-attach');
 var qsa = require('fdom/qsa');
 var h = require('hyperscript');
 var ctrlAudioOnly = h('div', h('button', { onclick: switchToAudioOnly }, 'Audio Only'));
 
 var activeStream;
-var qc = quickconnect('//switchboard.rtc.io/', {
+var qc = quickconnect('https://switchboard.rtc.io/', {
   iceServers: require('freeice')(),
-  room: 'faq-changestream',
+  room: 'rtc-faq:changestream',
   reactive: true
 });
 
-function capture(constraints) {
-  media({ constraints: constraints })
-    .once('capture', function(stream) {
-      if (activeStream) {
-        qc.removeStream(activeStream);
-      }
+function cap(constraints) {
+  capture(constraints, function(err, stream) {
+    if (err) {
+      return console.error(err);
+    }
 
-      qc.addStream(activeStream = stream);
-    })
-    .on('error', function(err) {
-      console.error(err);
-    });
+    if (activeStream) {
+      qc.removeStream(activeStream);
+    }
+
+    qc.addStream(activeStream = stream);
+  });
 }
 
 function switchToAudioOnly() {
-  capture({ audio: true, video: false });
+  cap({ audio: true, video: false });
 }
 
 qc.on('stream:added', function(id, stream) {
-  console.log('stream added: ', stream.getVideoTracks().length);
-  var el = media({ stream: stream }).render(document.body);
-  el.dataset.peer = id;
+  attach(stream, function(err, el) {
+    if (err) {
+      return console.error(err);
+    }
+
+    el.dataset.peer = id;
+    document.body.appendChild(el);
+  });
 });
 
 qc.on('stream:removed', function(id) {
@@ -43,4 +49,4 @@ qc.on('stream:removed', function(id) {
 });
 
 document.body.appendChild(ctrlAudioOnly);
-capture({ audio: true, video: true });
+cap({ audio: true, video: true });
