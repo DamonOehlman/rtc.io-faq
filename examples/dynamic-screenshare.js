@@ -1,7 +1,7 @@
 var h = require('hyperscript');
 var kgo = require('kgo');
 var quickconnect = require('rtc-quickconnect');
-var screenshare = require('rtc-screenshare');
+var screenshare = require('rtc-screen');
 var getUserMedia = require('getusermedia');
 var streamui = require('rtc-ui/stream');
 
@@ -34,8 +34,7 @@ function activateStream(stream) {
 
 function captureScreen() {
   kgo
-  ('constraints', screenshare.window)
-  ('capture', ['constraints'], getUserMedia)
+  ('capture', screenshare)
   ('add-stream', ['capture'], activateStream)
   .on('error', reportError);
 }
